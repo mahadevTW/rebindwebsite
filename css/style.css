@@ -8,7 +8,9 @@ html{
     scroll-behavior: smooth;
 }
 .container{
-    width: 1240px;
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 24px;
 }
 .topfixed {
     position: fixed !important;
@@ -325,7 +327,8 @@ nav.rebind-navbar .navbar-collapse{
     padding: 80px 50px;
     text-align: center;
     color: #fff;
-    width: 1140px;
+    width: 100%;
+    max-width: 1400px;
     margin: -300px auto 200px;
     border-radius: 20px;
 }
@@ -488,6 +491,124 @@ nav.rebind-navbar .navbar-collapse{
 .industries-section .industry-list .box:hover .content span{
     color: #fff;
 }
+
+/*--------------------------- Pricing Section ---------------------------*/
+.pricing-section{
+    position: relative;
+    padding: 80px 0 100px 0;    
+    z-index: 1;
+}
+.pricing-section .overlay-title{
+    display: none;
+    text-align: center;
+    font-size: 180px;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    color: #f6fbff;
+    z-index: -1;
+    width: 100%;
+    left: 0;
+}
+.pricing-section .head-title{
+    color: #161C2D;
+    text-align: center;
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 30px;
+}
+.pricing-section .head-title span{
+    color: #1a85f8;
+}
+.pricing-section .pricing-table-wrap{
+    background: #fff;
+    box-shadow: 1px 1px 2px 0px #00000026;
+    border-radius: 20px;
+    padding: 20px;
+}
+.pricing-section .pricing-table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+/* comparison styles */
+.pricing-section .pricing-table.pricing-compare thead th{
+    text-align: center;
+}
+.pricing-section .pricing-table.pricing-compare thead th small{
+    display: block;
+    color: #606A95;
+    font-weight: 400;
+}
+.pricing-section .pricing-table.pricing-compare thead th .plan-badge{
+    display: inline-block;
+    background: #1a85f8;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin: 0 0 6px 0;
+}
+.pricing-section .pricing-table.pricing-compare td,
+.pricing-section .pricing-table.pricing-compare th{
+    border-right: 1px solid #ECEEF4;
+}
+.pricing-section .pricing-table.pricing-compare td:last-child,
+.pricing-section .pricing-table.pricing-compare th:last-child{
+    border-right: none;
+}
+.pricing-section .pricing-table.pricing-compare .featured,
+.pricing-section .pricing-table.pricing-compare td.featured{
+    background: #F0F7FF;
+    color: #161C2D;
+    position: relative;
+}
+.pricing-section .pricing-table.pricing-compare .cta-row td{
+    text-align: center;
+}
+.pricing-section .pricing-table tbody th{
+    background: #EBF7FF;
+    color: #1a85f8;
+    font-weight: 700;
+    padding: 16px;
+    border-bottom: 1px solid #ECEEF4;
+}
+.pricing-section .pricing-table tbody td{
+    padding: 16px;
+    border-bottom: 1px solid #ECEEF4;
+    color: #161C2D;
+    font-size: 16px;
+}
+.pricing-section .pricing-table tbody tr:hover{
+    background: #F8FBFF;
+}
+.pricing-section .pricing-table tbody tr:last-child td{
+    border-bottom: none;
+}
+.pricing-section .btn-get-started{
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #1a85f8;
+    background: #fff;
+    border: 1px solid #1a85f8;
+}
+.pricing-section .btn-get-started.primary{
+    background: #1a85f8;
+    color: #fff;
+    border-color: #1a85f8;
+}
+.pricing-section .btn-get-started:hover{
+    filter: brightness(0.95);
+}
+
 /*--------------------------- About Us Section ---------------------------*/
 .about-section{
     position: relative;
@@ -957,6 +1078,7 @@ nav.rebind-navbar .navbar-collapse{
         font-size: 40px;
     }
     .industries-section .overlay-title,
+    .pricing-section .overlay-title,
     .product-section .overlay-title,
     .about-section .overlay-title,
     .faq-section .overlay-title,
@@ -1004,5 +1126,20 @@ nav.rebind-navbar .navbar-collapse{
     }
     .getintouch-section iframe {
         margin-top: 50px;
+    }
+    .pricing-section{
+        padding: 50px 15px;
+    }
+    .pricing-section .head-title{
+        font-size: 40px;
+    }
+    .pricing-section .pricing-table-wrap{
+        padding: 10px;
+        border-radius: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .pricing-section .pricing-table{
+        min-width: 860px;
     }
 }
