@@ -194,6 +194,22 @@ nav.rebind-navbar .navbar-collapse{
     bottom: 0;
     left: 0;
 }
+/* Typewriter cursor for hero title */
+#typewriter-title { display:inline-block; }
+#typewriter-title::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 4px;
+    animation: blink 0.8s steps(1) infinite;
+    vertical-align: -2px;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+}
 /*--------------------------- Product Section ---------------------------*/
 .product-section{
     position: relative;
