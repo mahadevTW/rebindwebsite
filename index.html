@@ -46,7 +46,7 @@
 	<div class="container">
 		<div class="head-title-wrap">
 			<div class="content">
-				<h1>Ensure Authenticity with Rebind-Trust</h1>
+				<h1 id="typewriter-title" data-rotate='["Ensure Authenticity with Rebind-Trust","Tracking and Tracking of your product"]'>Ensure Authenticity with Rebind-Trust</h1>
 				<p>Protect your consumer and build trust with product verification.</p>
 				<a href="#product">Know More <i class="fa fa-code" aria-hidden="true"></i></a>
 			</div>
@@ -422,6 +422,34 @@
             e.preventDefault();
             $(this).tab('show');
         });
+
+		var $title = $('#typewriter-title');
+		if ($title.length) {
+			var rotateAttr = $title.attr('data-rotate');
+			var texts = [];
+			if (rotateAttr) {
+				try { texts = JSON.parse(rotateAttr); } catch (e) { texts = [$.trim($title.text())]; }
+			} else {
+				texts = [$.trim($title.text())];
+			}
+			var speed = 60; // ms per char
+			var pauseBetween = 700; // ms between texts
+			function typeText(text, cb) {
+				var i = 0;
+				$title.text(''); // clear previous text before typing new one
+				var intervalId = setInterval(function() {
+					$title.text(text.slice(0, ++i));
+					if (i >= text.length) {
+						clearInterval(intervalId);
+						if (typeof cb === 'function') setTimeout(cb, pauseBetween);
+					}
+				}, speed);
+			}
+			(function typeSequence(index) {
+				if (index >= texts.length) return;
+				typeText(texts[index], function() { typeSequence(index + 1); });
+			})(0);
+		}
     });
 </script>
 
