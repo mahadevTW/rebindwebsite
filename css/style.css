@@ -889,6 +889,13 @@ nav.rebind-navbar .navbar-collapse{
 .getintouch-section .right-box{
     width: 45%;
 }
+/* embeded block overflow preventation */
+.getintouch-section .right-box iframe{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    border: 0;
+}
 /*--------------------------- Footer Section ---------------------------*/
 .rebind-footer{
     background: linear-gradient(180deg, #18337A 0%, #0F0C1D 100%);
@@ -1197,6 +1204,8 @@ nav.rebind-navbar .navbar-collapse{
     }
     .getintouch-section iframe {
         margin-top: 50px;
+        width: 100% !important;
+        height: 320px;
     }
     .pricing-section{
         padding: 50px 15px;
