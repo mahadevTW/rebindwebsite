@@ -894,6 +894,7 @@ nav.rebind-navbar .navbar-collapse{
     background: linear-gradient(180deg, #18337A 0%, #0F0C1D 100%);
     padding: 10px 0 10px 0;
     border-radius: 50px 50px 0 0;
+    width: 100% !important;
 }
 .rebind-footer .contact-list{
     display: flex;
@@ -936,6 +937,14 @@ nav.rebind-navbar .navbar-collapse{
 .rebind-footer .copyright-wrap a{
     text-decoration: none;
     color:#1a85f8;
+}
+
+/* embeded block overflow preventation */
+.getintouch-section .right-box iframe{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    border: 0;
 }
 /*--------------------------- Responsive ---------------------------*/
 @media (min-height: 900px) and (max-height: 1080px) and (min-width: 1920px) and (max-width: 1920px) {
