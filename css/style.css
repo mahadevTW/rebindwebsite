@@ -497,9 +497,9 @@ nav.rebind-navbar .navbar-collapse{
     position: relative;
     padding: 80px 0 100px 0;    
     z-index: 1;
+    background: #FBFDFF;
 }
 .pricing-section .overlay-title{
-    display: none;
     text-align: center;
     font-size: 180px;
     font-weight: 900;
@@ -518,41 +518,88 @@ nav.rebind-navbar .navbar-collapse{
     font-weight: 700;
     line-height: 1;
     letter-spacing: -1.5px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .pricing-section .head-title span{
     color: #1a85f8;
 }
+.pricing-section .pricing-description{
+    color: #606A95;
+    font-size: 18px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+}
 .pricing-section .pricing-table-wrap{
     background: #fff;
-    box-shadow: 1px 1px 2px 0px #00000026;
+    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.08);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
+    margin-bottom: 60px;
+    overflow-x: auto;
 }
 .pricing-section .pricing-table{
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     overflow: hidden;
+    min-width: 1000px;
 }
 /* comparison styles */
 .pricing-section .pricing-table.pricing-compare thead th{
     text-align: center;
+    padding: 25px 12px;
+    background: #EBF7FF;
+    color: #161C2D;
+    font-weight: 700;
+    font-size: 18px;
+    vertical-align: middle;
+    position: relative;
+}
+.pricing-section .pricing-table.pricing-compare thead th:first-child{
+    background: transparent;
+    text-align: left;
+    font-size: 16px;
+    color: #606A95;
 }
 .pricing-section .pricing-table.pricing-compare thead th small{
     display: block;
+    color: #1a85f8;
+    font-weight: 700;
+    font-size: 28px;
+    margin: 8px 0 4px 0;
+}
+.pricing-section .pricing-table.pricing-compare thead th .plan-period{
+    display: block;
     color: #606A95;
+    font-size: 14px;
     font-weight: 400;
+    margin-top: 4px;
 }
 .pricing-section .pricing-table.pricing-compare thead th .plan-badge{
     display: inline-block;
     background: #1a85f8;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 3px 8px;
+    padding: 4px 10px;
     border-radius: 20px;
-    margin: 0 0 6px 0;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.pricing-section .pricing-table.pricing-compare thead th.featured{
+    background: linear-gradient(180deg, #1a85f8 0%, #1467FF 100%);
+    color: #fff;
+    border: 2px solid #1a85f8;
+    box-shadow: 0px 8px 20px rgba(26, 133, 248, 0.3);
+}
+.pricing-section .pricing-table.pricing-compare thead th.featured small{
+    color: #fff;
+}
+.pricing-section .pricing-table.pricing-compare thead th.featured .plan-period{
+    color: rgba(255, 255, 255, 0.8);
 }
 .pricing-section .pricing-table.pricing-compare td,
 .pricing-section .pricing-table.pricing-compare th{
@@ -567,25 +614,52 @@ nav.rebind-navbar .navbar-collapse{
     background: #F0F7FF;
     color: #161C2D;
     position: relative;
+    font-weight: 500;
+}
+.pricing-section .pricing-table.pricing-compare .featured:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #1a85f8;
 }
 .pricing-section .pricing-table.pricing-compare .cta-row td{
     text-align: center;
+    padding: 30px 12px;
+    background: #FBFDFF;
 }
-.pricing-section .pricing-table tbody th{
+.pricing-section .pricing-table.pricing-compare .cta-row td.featured{
+    background: #F0F7FF;
+}
+.pricing-section .pricing-table tbody td:first-child{
     background: #EBF7FF;
     color: #1a85f8;
-    font-weight: 700;
-    padding: 16px;
+    font-weight: 600;
+    padding: 18px 20px;
+    text-align: left;
     border-bottom: 1px solid #ECEEF4;
+    font-size: 15px;
+}
+.pricing-section .pricing-table tbody td:first-child strong{
+    color: #1a85f8;
+    font-weight: 700;
 }
 .pricing-section .pricing-table tbody td{
-    padding: 16px;
+    padding: 18px 15px;
     border-bottom: 1px solid #ECEEF4;
     color: #161C2D;
-    font-size: 16px;
+    font-size: 15px;
+    text-align: center;
+    vertical-align: middle;
+    transition: background 0.3s ease;
 }
-.pricing-section .pricing-table tbody tr:hover{
+.pricing-section .pricing-table tbody tr:hover td:not(:first-child){
     background: #F8FBFF;
+}
+.pricing-section .pricing-table tbody tr:hover td.featured{
+    background: #E8F2FF;
 }
 .pricing-section .pricing-table tbody tr:last-child td{
     border-bottom: none;
@@ -593,20 +667,87 @@ nav.rebind-navbar .navbar-collapse{
 .pricing-section .btn-get-started{
     display: inline-block;
     text-decoration: none;
-    padding: 10px 18px;
+    padding: 10px 16px;
     border-radius: 8px;
     font-weight: 700;
     color: #1a85f8;
     background: #fff;
-    border: 1px solid #1a85f8;
+    border: 2px solid #1a85f8;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.pricing-section .btn-get-started:hover{
+    background: #1a85f8;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(26, 133, 248, 0.3);
 }
 .pricing-section .btn-get-started.primary{
     background: #1a85f8;
     color: #fff;
     border-color: #1a85f8;
+    box-shadow: 0px 4px 12px rgba(26, 133, 248, 0.3);
 }
-.pricing-section .btn-get-started:hover{
-    filter: brightness(0.95);
+.pricing-section .btn-get-started.primary:hover{
+    background: #1467FF;
+    border-color: #1467FF;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 16px rgba(26, 133, 248, 0.4);
+}
+.pricing-section .pricing-features-highlight{
+    margin: 60px 0 0 0;
+}
+.pricing-section .pricing-features-highlight .feature-box{
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.pricing-section .pricing-features-highlight .feature-box:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+}
+.pricing-section .pricing-features-highlight .feature-box h4{
+    color: #1a85f8;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+.pricing-section .pricing-features-highlight .feature-box ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.pricing-section .pricing-features-highlight .feature-box ul li{
+    color: #161C2D;
+    font-size: 16px;
+    padding: 8px 0;
+    line-height: 1.6;
+}
+.pricing-section .pricing-features-highlight .feature-box p{
+    color: #606A95;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+.pricing-section .pricing-features-highlight .feature-box .btn-help{
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #1a85f8;
+    background: #F0F7FF;
+    border: 1px solid #1a85f8;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+.pricing-section .pricing-features-highlight .feature-box .btn-help:hover{
+    background: #1a85f8;
+    color: #fff;
 }
 
 /*--------------------------- About Us Section ---------------------------*/
@@ -1130,16 +1271,64 @@ nav.rebind-navbar .navbar-collapse{
     .pricing-section{
         padding: 50px 15px;
     }
+    .pricing-section .overlay-title{
+        font-size: 60px;
+    }
     .pricing-section .head-title{
         font-size: 40px;
     }
+    .pricing-section .pricing-description{
+        font-size: 16px;
+        padding: 0 15px;
+    }
     .pricing-section .pricing-table-wrap{
-        padding: 10px;
+        padding: 15px;
         border-radius: 10px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        margin-bottom: 40px;
     }
     .pricing-section .pricing-table{
-        min-width: 860px;
+        min-width: 900px;
+    }
+    .pricing-section .pricing-table.pricing-compare thead th{
+        padding: 15px 10px;
+        font-size: 14px;
+    }
+    .pricing-section .pricing-table.pricing-compare thead th small{
+        font-size: 20px;
+    }
+    .pricing-section .pricing-table.pricing-compare thead th .plan-period{
+        font-size: 11px;
+    }
+    .pricing-section .pricing-table tbody td{
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+    .pricing-section .pricing-table tbody td:first-child{
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+    .pricing-section .pricing-features-highlight{
+        margin: 40px 0 0 0;
+    }
+    .pricing-section .pricing-features-highlight .feature-box{
+        margin-bottom: 30px;
+        padding: 25px 20px;
+    }
+    .pricing-section .pricing-features-highlight .feature-box h4{
+        font-size: 20px;
+    }
+    .pricing-section .pricing-features-highlight .feature-box ul li,
+    .pricing-section .pricing-features-highlight .feature-box p{
+        font-size: 14px;
+    }
+    .pricing-section .btn-get-started{
+        padding: 8px 14px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    .pricing-section .pricing-table.pricing-compare .cta-row td{
+        padding: 20px 8px;
     }
 }
