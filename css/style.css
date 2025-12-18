@@ -566,8 +566,79 @@ nav.rebind-navbar .navbar-collapse{
     margin-bottom: 40px;
 }
 .clients-section .head-title span{ color:#1a85f8; }
-.clients-section .clients-card{ background:#fff; border:1px solid #ECEEF4; border-radius:16px; box-shadow:0 12px 30px rgba(0,0,0,.06); padding:30px; }
-.clients-section .clients-logos{ display:flex; flex-wrap:wrap; gap:40px; justify-content:center; align-items:center; }
+.clients-section .description {
+    color: #606A95;
+    font-size: 18px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+}
+.clients-section .clients-card{ 
+    background:#fff; 
+    border:1px solid #ECEEF4; 
+    border-radius:20px; 
+    box-shadow:0 4px 20px rgba(0,0,0,.08); 
+    padding:50px 40px; 
+    transition: all 0.3s ease;
+}
+.clients-section .clients-logos{ 
+    display:grid; 
+    grid-template-columns: repeat(4, 1fr);
+    gap:40px; 
+    justify-items:center; 
+    align-items:center; 
+}
+.clients-section .client-logo-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clients-section .client-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    transition: all 0.3s ease;
+}
+.clients-section .client-logo{ 
+    height: auto;
+    max-height: 60px;
+    width: auto;
+    max-width: 100%;
+    filter: grayscale(0); 
+    opacity: 1;
+    transition: all 0.3s ease;
+    object-fit: contain;
+}
+.clients-section .client-logo:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.05);
+}
+.clients-section .client-logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background: #FBFDFF;
+    border: 2px dashed #ECEEF4;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+.clients-section .client-logo-placeholder:hover {
+    border-color: #1a85f8;
+    background: #EBF7FF;
+}
+.clients-section .client-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #606A95;
+    text-align: center;
+}
 .clients-section .logo-badge{
     background: transparent;
     border: none;
@@ -579,11 +650,38 @@ nav.rebind-navbar .navbar-collapse{
     height:42px; width:auto; fill:#111; color:#111;
     filter: grayscale(1); opacity:.85;
 }
-.clients-section .client-logo{ height:60px; width:auto; filter: grayscale(1); opacity:.85; }
-@media(min-width: 320px) and (max-width: 480px){
+@media(min-width: 768px) and (max-width: 991px){
     .clients-section{ padding:60px 0; }
     .clients-section .head-title{ font-size:40px; }
     .clients-section .overlay-title{ font-size:60px; }
+    .clients-section .clients-logos{ 
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    .clients-section .clients-card {
+        padding: 40px 20px;
+    }
+}
+@media(min-width: 320px) and (max-width: 767px){
+    .clients-section{ padding:60px 0; }
+    .clients-section .head-title{ font-size:40px; }
+    .clients-section .overlay-title{ font-size:60px; }
+    .clients-section .clients-logos{ 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    .clients-section .clients-card {
+        padding: 40px 20px;
+    }
+}
+@media(min-width: 320px) and (max-width: 480px){
+    .clients-section .clients-logos{ 
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .clients-section .client-logo-wrapper {
+        height: 70px;
+    }
 }
 
 /*--------------------------- Use Cases Section ---------------------------*/
