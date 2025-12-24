@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <!-- Background rectangle for visibility -->
+  <rect width="200" height="50" fill="#0d7377" rx="4"/>
+  
+  <!-- Medical cross with circle background -->
+  <circle cx="25" cy="25" r="18" fill="white" opacity="0.2"/>
+  
+  <!-- Medical cross symbol -->
+  <rect x="21" y="10" width="8" height="30" fill="white" rx="1.5"/>
+  <rect x="10" y="21" width="30" height="8" fill="white" rx="1.5"/>
+  
+  <!-- Company name with white text for visibility on teal background -->
+  <text x="50" y="22" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="bold" fill="white" letter-spacing="1px">NYFINITY</text>
+  <text x="50" y="36" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="white" opacity="0.9" letter-spacing="0.5px">PHARMACEUTICALS</text>
+</svg>
