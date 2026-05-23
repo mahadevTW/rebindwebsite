@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>From 30 Seconds to 80ms: Scaling Geospatial Data to Millions of Points - Rebind Trust Blog</title>
+	<meta name="description"
+		content="Learn how we optimized geospatial data visualization from 30 seconds to 80ms by scaling to millions of points using server-side vector tiles and PostGIS.">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#1a85f8">
+	<link rel="shortcut icon" type="image/x-icon" href="../images/favicon-png.png">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<!-- Google Analytics Centralized -->
+	<script src="../js/analytics.js"></script>
+
+	<!-- Start of HubSpot Embed Code -->
+	<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47676553.js"></script>
+	<!-- End of HubSpot Embed Code -->
+</head>
+
+<body>
+	<nav class="navbar navbar-default rebind-navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="logo">
+					<a href="../index.html"><img src="../images/rebind-logo-png.png" class="img-responsive"
+							alt="Rebind Logo"></a>
+				</div>
+			</div>
+			<div class="collapse navbar-collapse navbar-right" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="../index.html#hero">Home</a></li>
+					<li><a href="../services.html">Services</a></li>
+					<li><a href="../index.html#product">Product</a></li>
+					<li><a href="../index.html#industries">Industries</a></li>
+					<li><a href="../pricing.html">Pricing</a></li>
+					<li><a href="../index.html#aboutus">About Us</a></li>
+					<li><a href="../blogs.html">Blogs</a></li>
+					<li><a href="../careers.html">Careers</a></li>
+					<li><a href="../index.html#faqs">FAQ's</a></li>
+					<li><a href="../index.html#contactus">Contact Us</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Blog Post Header -->
+	<div class="blog-post-header">
+		<div class="container">
+			<div class="blog-breadcrumb">
+				<a href="../index.html">Home</a> / <a href="../blogs.html">Blogs</a> / <span>From 30 Seconds to 80ms: Scaling Geospatial Data to Millions of Points</span>
+			</div>
+			<div class="blog-post-meta">
+				<span class="blog-post-date">March 23, 2026</span>
+				<span class="blog-post-category">Technology</span>
+				<span class="blog-post-read-time">12 min read</span>
+			</div>
+			<h1 class="blog-post-title">From 30 Seconds to 80ms: Scaling Geospatial Data to Millions of Points</h1>
+			<p class="blog-post-subtitle">How we optimized geospatial data visualization from 30 seconds to 80ms by scaling to millions of points using server-side vector tiles and PostGIS.</p>
+		</div>
+	</div>
+
+	<!-- Blog Post Content -->
+	<div class="blog-post-content">
+		<div class="container">
+			<div class="blog-post-body">
+				<!-- Introduction -->
+				<section class="blog-section">
+					<p class="blog-lead">In modern SaaS architecture, handling data at scale is a fundamental requirement. However, visualizing that data—specifically millions of geospatial data points—presents a unique set of engineering challenges that standard CRUD patterns cannot address.</p>
+				</section>
+
+				<!-- The Business Requirement -->
+				<section class="blog-section">
+					<h2>The Business Requirement</h2>
+					<p>We were tasked with architecting a real-time geolocation analytics dashboard for our enterprise clients. The objective was to provide deep visibility into product usage by tracking QR code scans globally. The system required a highly interactive map interface capable of displaying usage density (clustering) at a macro level while allowing administrators to drill down into specific, street-level data points (pins) with zero latency.</p>
+				</section>
+
+				<!-- The Initial Architectural Approach -->
+				<section class="blog-section">
+					<h2>The Initial Architectural Approach</h2>
+					<p>Our initial proof-of-concept utilized a traditional client-side rendering architecture, a standard pattern for most web applications:</p>
+					<ul>
+						<li><strong>Data Retrieval:</strong> The frontend initiates a REST API call to the backend.</li>
+						<li><strong>Query Execution:</strong> The backend executes a standard SELECT query against the database.</li>
+						<li><strong>Data Transfer:</strong> The result set is serialized into JSON and transmitted to the client.</li>
+						<li><strong>Visualization:</strong> The frontend parses the JSON and instantiates DOM elements (markers) using a standard mapping library.</li>
+					</ul>
+				</section>
+
+				<!-- Performance Bottlenecks and Failure Modes -->
+				<section class="blog-section">
+					<h2>Performance Bottlenecks and Failure Modes</h2>
+					<p>While this architecture performed within acceptable limits for small datasets (under 5,000 records), load testing with larger subsets revealed critical structural failures:</p>
+					<ul>
+						<li><strong>Network Latency:</strong> The JSON payload size ballooned, resulting in download times upwards of 30 seconds.</li>
+						<li><strong>Main Thread Blocking:</strong> The JavaScript engine consumed excessive memory resources parsing the massive JSON string, causing significant input delay.</li>
+						<li><strong>DOM Rendering Overhead:</strong> Attempting to render tens of thousands of individual DOM elements overwhelmed the browser's layout engine, resulting in UI freezes and eventual application crashes.</li>
+					</ul>
+					<p>It became evident that client-side rendering is inherently unscalable for high-volume geospatial data. The bottleneck was not in the database's ability to fetch data, but in the browser's ability to ingest and render it. To achieve our performance targets, we needed to shift the computational burden from the client to the server.</p>
+				</section>
+
+				<!-- The Solution Architecture: Server-Side Vector Tiles -->
+				<section class="blog-section">
+					<h2>The Solution Architecture: Server-Side Vector Tiles</h2>
+					<p>To address the inherent scalability constraints, we re-evaluated our rendering strategy by analyzing patterns used by high-scale mapping platforms. The solution required a fundamental paradigm shift: moving from fetching raw data to serving Vector Tiles (MVT).</p>
+				</section>
+
+				<!-- The Architectural Pivot -->
+				<section class="blog-section">
+					<h3>The Architectural Pivot</h3>
+					<p>Instead of transferring the entire dataset to the client, the Vector Tile specification divides the global map into a hierarchical quadtree grid. When a user navigates the map, the client requests data only for the specific square tiles (defined by Zoom, X, and Y coordinates) currently within the viewport.</p>
+				</section>
+
+				<!-- Dynamic Aggregation Strategy -->
+				<section class="blog-section">
+					<h3>Dynamic Aggregation Strategy</h3>
+					<p>A critical component of this architecture is Dynamic Level-of-Detail (LOD). We implemented logic to alter the data resolution based on the user's zoom level:</p>
+					<ul>
+						<li><strong>Macro View (Low Zoom):</strong> The system aggregates millions of points into statistical clusters server-side.</li>
+						<li><strong>Micro View (High Zoom):</strong> The system delivers precise geometry for individual data points only when the user zooms in sufficiently.</li>
+					</ul>
+					<p>This ensures that the payload size remains constant and lightweight—typically under 50KB per tile—regardless of whether the underlying dataset contains ten thousand or millions of records.</p>
+				</section>
+
+				<!-- The Revised Tech Stack -->
+				<section class="blog-section">
+					<h3>The Revised Tech Stack</h3>
+					<p>We restructured the application into a decoupled pipeline to optimize for throughput and rendering speed:</p>
+					<ul>
+						<li><strong>Database (PostgreSQL + PostGIS):</strong> Promoted from a passive data store to the primary computational engine. It handles all spatial math, bounding box calculations, and point clustering.</li>
+						<li><strong>Backend (Spring Boot):</strong> Re-purposed as a thin streaming proxy. It accepts tile coordinates, queries the database, and streams binary Protocol Buffers (PBF) to the client without object deserialization overhead.</li>
+						<li><strong>Frontend (MapLibre GL):</strong> Replaced the DOM-based rendering engine with a WebGL-based renderer. This allows the browser to offload the visualization work to the client's GPU, enabling smooth 60 FPS performance even with complex vector data.</li>
+					</ul>
+				</section>
+
+				<!-- Database Engineering: Optimizing PostGIS for High-Throughput -->
+				<section class="blog-section">
+					<h2>Database Engineering: Optimizing PostGIS for High-Throughput</h2>
+					<p>The central architectural decision was to minimize application-layer overhead by offloading spatial computation entirely to the persistence layer. Transferring millions of rows into the application memory for processing would introduce unacceptable serialization costs. Instead, we leveraged PostGIS to perform filtering, transformation, and serialization directly at the data source.</p>
+				</section>
+
+				<!-- Schema Optimization and Pre-Computation -->
+				<section class="blog-section">
+					<h3>Schema Optimization and Pre-Computation</h3>
+					<p>Standard spatial queries often suffer from the CPU cost of coordinate system transformations (ST_Transform) during runtime. To mitigate this, we adopted a strategy of spatial denormalization:</p>
+					<ul>
+						<li><strong>Pre-Projected Geometry (geom_web_mercator):</strong> We stored a secondary geometry column pre-projected to EPSG:3857 (Web Mercator). This aligns the data storage with the map rendering projection, eliminating the need for mathematical transformation during query execution.</li>
+						<li><strong>Geohash Indexing (geohash):</strong> We generated a geohash string for every record upon insertion. This enables highly efficient text-based aggregation, allowing the database to group millions of points using standard B-Tree indexes rather than expensive spatial distance calculations.</li>
+					</ul>
+				</section>
+
+				<!-- Indexing Strategy -->
+				<section class="blog-section">
+					<h3>Indexing Strategy</h3>
+					<p>Performance at this scale relies heavily on precise index selection. We utilized Generalized Search Tree (GiST) indexes for the spatial columns to enable logarithmic time complexity for bounding box intersection queries (&&), alongside composite B-Tree indexes for clustering keys.</p>
+					<pre><code>-- Schema Optimization
+ALTER TABLE scan ADD COLUMN geom_web_mercator geometry(Point, 3857);
+ALTER TABLE scan ADD COLUMN geohash VARCHAR(7);
+
+-- Indexing Strategy
+CREATE INDEX idx_scan_geom_web_mercator ON scan USING GIST (geom_web_mercator); 
+CREATE INDEX idx_scan_geohash ON scan (geohash);</code></pre>
+				</section>
+
+				<!-- Logic Encapsulation via Stored Procedures -->
+				<section class="blog-section">
+					<h3>Logic Encapsulation via Stored Procedures</h3>
+					<p>We encapsulated the tile generation logic within a stored procedure (get_scan_tile). This function acts as a dynamic tile generator that alters its execution plan based on the requested Zoom Level (Z):</p>
+					<ul>
+						<li><strong>Macro-Aggregations (Low Zoom):</strong> The function executes a GROUP BY operation using a substring of the geohash. This rapidly aggregates millions of records into a manageable set of weighted cluster points.</li>
+						<li><strong>Micro-Precision (High Zoom):</strong> The function leverages the GiST index to perform a spatial intersection, retrieving precise geometry for points strictly contained within the user's viewport.</li>
+					</ul>
+					<pre><code>-- Dynamic Tile Generation Logic
+IF z < 12 THEN
+    -- Macro View: Fast Clustering via Geohash Prefix
+    SELECT count(*) as point_count, ST_AsMVTGeom(...) 
+    FROM scan
+    GROUP BY substring(geohash from 1 for 4);
+ELSE
+     -- Micro View: Exact Points via Spatial Index 
+    SELECT ST_AsMVTGeom(...) 
+    FROM scan 
+    WHERE geom_web_mercator && tile_bounds;
+ END IF;</code></pre>
+					<p>Crucially, the function utilizes ST_AsMVT, a native PostGIS function that serializes the result set into the binary Protocol Buffer (PBF) format directly within the database engine. This ensures the data is fully prepared for wire transmission immediately upon retrieval, bypassing the need for any data transformation in the application layer.</p>
+				</section>
+
+				<!-- The Backend: Constructing a High-Performance Streaming Proxy -->
+				<section class="blog-section">
+					<h2>The Backend: Constructing a High-Performance Streaming Proxy</h2>
+					<p>With the computational logic offloaded to the database, the role of the Spring Boot application layer shifted from data processing to high-throughput streaming. The primary engineering objective was to minimize latency between the database cursor and the HTTP response stream.</p>
+				</section>
+
+				<!-- Data Access Strategy: Bypassing the ORM -->
+				<section class="blog-section">
+					<h3>Data Access Strategy: Bypassing the ORM</h3>
+					<p>While Hibernate (JPA) is standard for transactional CRUD operations, it introduces significant overhead when handling binary data. Object-Relational Mapping requires result set parsing, object instantiation, and state management—all unnecessary costs for a read-only binary stream.</p>
+					<p>To optimize for raw throughput, we utilized Spring's JdbcTemplate. This allowed us to execute the stored procedure and retrieve the resulting bytea (binary array) directly, bypassing the JVM's object allocation heap entirely for the payload data.</p>
+				</section>
+
+				<!-- The Tile Controller -->
+				<section class="blog-section">
+					<h3>The Tile Controller</h3>
+					<p>The API endpoint acts as a thin gateway. It accepts the standard Vector Tile coordinates (Z/X/Y) along with strict filtering parameters. The implementation emphasizes two critical performance factors:</p>
+					<ul>
+						<li><strong>Zero-Copy Streaming:</strong> The binary data from the database is written directly to the HTTP response body.</li>
+						<li><strong>HTTP Caching:</strong> We implement aggressive Cache-Control headers. Since map data for a specific tile and timestamp is immutable, we instruct downstream CDNs and browser clients to cache the tile, significantly reducing load on the database for recurring views.</li>
+					</ul>
+				</section>
+
+				<!-- The Frontend: High-Performance Rendering via WebGL -->
+				<section class="blog-section">
+					<h2>The Frontend: High-Performance Rendering via WebGL</h2>
+					<p>The final component of the architecture was the visualization layer. To achieve our target of 60 FPS performance while rendering potentially millions of data points, we migrated from DOM-based libraries to MapLibre GL. This shift allowed us to leverage WebGL, offloading the rendering pipeline directly to the client's GPU.</p>
+				</section>
+
+				<!-- Integration Strategy -->
+				<section class="blog-section">
+					<h3>Integration Strategy</h3>
+					<p>The integration with the backend was implemented via the MapLibre vector source specification. Instead of loading a static dataset, the map client was configured to request tiles dynamically from our Spring Boot endpoint. This establishes a highly efficient data pipeline where the frontend requests only the visual data required for the current viewport and zoom level.</p>
+				</section>
+
+				<!-- Client-Side Data-Driven Styling -->
+				<section class="blog-section">
+					<h3>Client-Side Data-Driven Styling</h3>
+					<p>A key advantage of the Vector Tile specification is the ability to separate data from styling. Rather than writing complex JavaScript logic to determine marker colors or sizes, we utilized MapLibre's expression language.</p>
+					<p>We implemented an interpolation strategy for the cluster layer. The renderer dynamically adjusts the circle colors and radius properties based on the point_count attribute embedded in the vector tile. This ensures visual density is communicated immediately without the overhead of client-side calculation loops.</p>
+				</section>
+
+				<!-- Production Deployment and Cloud Architecture -->
+				<section class="blog-section">
+					<h2>Production Deployment and Cloud Architecture</h2>
+					<p>Moving from a local development environment to a production cloud infrastructure required addressing the final bottleneck: compute cost. Calculating vector tiles is CPU-intensive. Executing the PL/pgSQL function for every single pan and zoom operation by thousands of concurrent users would place unsustainable load on the primary database instance.</p>
+				</section>
+
+				<!-- Database Layer: Managed PostgreSQL -->
+				<section class="blog-section">
+					<h3>Database Layer: Managed PostgreSQL</h3>
+					<p>We deployed the persistence layer on AWS RDS for PostgreSQL. This managed service provided automated backups and high availability. Crucially, we verified that the PostGIS extension was enabled and optimized the instance class to favor compute (e.g., db.m5 series) to handle the MVT generation efficiently.</p>
+				</section>
+
+				<!-- Edge Caching Strategy (CDN) -->
+				<section class="blog-section">
+					<h3>Edge Caching Strategy (CDN)</h3>
+					<p>To scale the tile delivery globally, we implemented an aggressive caching strategy using AWS CloudFront as a Content Delivery Network (CDN) in front of the API.</p>
+					<p>The Spring Boot application emits a specific HTTP header: Cache-Control: public, max-age=600. This instruction tells CloudFront (and downstream browsers) to cache the binary tile for 10 minutes.</p>
+					<p>Cache Key: The cache key is composed of the URL path (/api/tiles/z/x/y.pbf) plus the unique query parameters (orgId, productId).</p>
+					<p>Impact: The database only computes a specific tile once per 10 minutes. All subsequent requests for that same geographic area—regardless of user location—are served directly from the CDN edge location. This reduces database load by over 99% for high-traffic regions and ensures consistent low latency globally.</p>
+				</section>
+
+				<!-- Conclusion and Final Benchmarks -->
+				<section class="blog-section">
+					<h2>Conclusion and Final Benchmarks</h2>
+					<p>The architectural migration from client-side processing to server-side vector tiles yielded measurable, order-of-magnitude improvements across all key metrics:</p>
+					<ul>
+						<li><strong>Throughput Capacity:</strong> Successfully scaled from a hard limit of ~5,000 points to supporting datasets exceeding millions of records.</li>
+						<li><strong>Load Time Latency:</strong> Reduced initial map load time from 30+ seconds (JSON parsing) to < 100ms (PBF streaming).</li>
+						<li><strong>Bandwidth Efficiency:</strong> Achieved a 95% reduction in network payload size by switching from verbose JSON to binary Protocol Buffers.</li>
+						<li><strong>Rendering Performance:</strong> The MapLibre WebGL engine maintains a consistent 60 FPS frame rate during panning and zooming, regardless of data density.</li>
+					</ul>
+					<p>This implementation demonstrates that for geospatial applications at scale, the browser is not the place for data processing. By leveraging the database for spatial computation and the GPU for rendering, we delivered a system that is robust, secure, and highly performant.</p>
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer-container"></div>
+
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/footer-loader.js"></script>
+
+	<script>
+		$(window).scroll(function () {
+			var scroll = $(window).scrollTop()
+
+			if (scroll >= 500) {
+				$('.rebind-navbar').addClass('topfixed');
+			} else {
+				$('.rebind-navbar').removeClass('topfixed');
+			}
+		});
+	</script>
+
+</body>
+
+</html>
