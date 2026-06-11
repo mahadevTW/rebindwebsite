@@ -3,24 +3,70 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Rebind - Winning Trust</title>
-	<meta name="description" content="">
+	<title>Rebind Trust - Product Authentication Platform</title>
+	<meta name="description" content="Rebind-Trust helps manufacturers achieve CDSCO regulatory compliance, prevent counterfeiting, and build consumer trust through QR-based product authentication.">
+	<meta name="robots" content="index,follow">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#1a85f8">
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://rebind.in/">
+	<meta property="og:title" content="Rebind Trust - Product Authentication Platform">
+	<meta property="og:description" content="Prevent counterfeiting, achieve CDSCO compliance, and build consumer trust with Rebind-Trust's QR-based product authentication platform.">
+	<meta property="og:image" content="https://rebind.in/images/rebind-logo-png.png">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Rebind Trust - Product Authentication Platform">
+	<meta name="twitter:description" content="Prevent counterfeiting, achieve CDSCO compliance, and build consumer trust with Rebind-Trust's QR-based product authentication platform.">
+	<meta name="twitter:image" content="https://rebind.in/images/rebind-logo-png.png">
+
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon-png.png">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="apple-touch-icon" href="images/favicon-png.png">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
+	<link rel="preload" href="css/style.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/style.css"></noscript>
 
 	<!-- Google Analytics Centralized -->
-	<script src="js/analytics.js"></script>
+	<script src="js/analytics.js" defer></script>
 
 	<!-- Start of HubSpot Embed Code -->
 	<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47676553.js"></script>
 	<!-- End of HubSpot Embed Code -->
+
+	<!-- Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": "Rebind Trust",
+		"url": "https://rebind.in/",
+		"logo": "https://rebind.in/images/rebind-logo-png.png",
+		"description": "Rebind-Trust helps manufacturers achieve regulatory compliance, prevent counterfeiting, and build consumer trust through QR-based product authentication.",
+		"contactPoint": {
+			"@type": "ContactPoint",
+			"telephone": "+91-9156929220",
+			"contactType": "customer support",
+			"email": "hello@rebind.in"
+		},
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": "Office No. 604, 6th Floor, Suratwala Mark Plazzo, Hinjawadi",
+			"addressLocality": "Pune",
+			"addressRegion": "Maharashtra",
+			"postalCode": "411057",
+			"addressCountry": "IN"
+		}
+	}
+	</script>
 </head>
 
 <body>
+<header>
 	<nav class="navbar navbar-default rebind-navbar">
 		<div class="container">
 			<div class="navbar-header">
@@ -50,7 +96,8 @@
 			</div>
 		</div>
 	</nav>
-
+</header>
+<main>
 	<div class="hero-section" id="hero">
 		<canvas id="hero-network"></canvas>
 		<div class="container">
@@ -62,17 +109,17 @@
 					<p>Rebind-Trust helps manufacturers achieve regulatory compliance, prevent counterfeiting, and build
 						consumer trust in a single integrated platform.</p>
 					<div class="cta-group">
-						<a href="https://admin.rebind.in/signup" class="cta-primary">Start Free Trial</a>
+						<a href="#contactus" class="cta-primary">Start Free Trial</a>
 						<a href="#contactus" class="cta-secondary">Request Demo</a>
 						<!-- <a href="#integrations" class="cta-tertiary">View API Docs</a> -->
 					</div>
 				</div>
 				<div class="img">
-					<img src="images/rebind-hero-right-img.webp" alt="Rebind WP Image" class="img-responsive">
+					<img src="images/rebind-hero-right-img.webp" alt="Rebind WP Image" class="img-responsive" width="2076" height="2587">
 				</div>
 			</div>
 		</div>
-		<img src="images/rebind-bottom-hero-img.png" alt="Rebind WP Image" class="img-responsive footer-wave-overlay">
+		<img src="images/rebind-bottom-hero-img.png" alt="Rebind WP Image" class="img-responsive footer-wave-overlay" width="5760" height="815">
 	</div>
 
 
@@ -80,7 +127,7 @@
 	<div class="features-section" id="features">
 		<div class="container">
 			<div class="overlay-title">Features</div>
-			<div class="head-title">Key <span>Features</span></div>
+			<h2 class="head-title">Key <span>Features</span></h2>
 			<div class="description">
 				Comprehensive features designed to help pharmaceutical manufacturers achieve compliance, prevent
 				counterfeiting, and build consumer trust.
@@ -200,7 +247,7 @@
 	<div class="how-it-works-section" id="how-it-works">
 		<div class="container">
 			<div class="overlay-title">Process</div>
-			<div class="head-title">Getting Started in <span>4 Steps</span></div>
+			<h2 class="head-title">Getting Started in <span>4 Steps</span></h2>
 			<div class="description">
 				Get up and running with Rebind-Trust in just 1-2 days. Our streamlined process ensures quick deployment
 				and immediate value.
@@ -270,7 +317,7 @@
 	<div class="benefits-section" id="benefits">
 		<div class="container">
 			<div class="overlay-title">Benefits</div>
-			<div class="head-title">Measurable Business <span>Outcomes</span></div>
+			<h2 class="head-title">Measurable Business <span>Outcomes</span></h2>
 			<div class="description">
 				Rebind-Trust delivers quantifiable results that impact your bottom line, operations, and compliance
 				posture.
@@ -324,7 +371,7 @@
 	<div class="security-section" id="security">
 		<div class="container">
 			<div class="overlay-title">Security</div>
-			<div class="head-title">Enterprise Security & <span>Compliance</span></div>
+			<h2 class="head-title">Enterprise Security & <span>Compliance</span></h2>
 			<div class="description">
 				Your data security and regulatory compliance are our top priorities. We maintain the highest standards
 				to protect your business.
@@ -380,7 +427,7 @@
 	<div class="integrations-section" id="integrations">
 		<div class="container">
 			<div class="overlay-title">Integrations</div>
-			<div class="head-title">Built for <span>Developers</span></div>
+			<h2 class="head-title">Built for <span>Developers</span></h2>
 			<div class="description">
 				Seamless integration with your existing systems. Our API-first architecture makes it easy to connect
 				Rebind-Trust with your infrastructure.
@@ -427,7 +474,7 @@
 	<div class="testimonials-section" id="testimonials">
 		<div class="container">
 			<div class="overlay-title">Testimonials</div>
-			<div class="head-title">Trusted by Leading <span>Companies</span></div>
+			<h2 class="head-title">Trusted by Leading <span>Companies</span></h2>
 			<div class="description">
 				See how leading companies are achieving compliance and preventing counterfeiting with Rebind-Trust.
 			</div>
@@ -491,7 +538,7 @@
 	<div class="product-section" id="product">
 		<div class="container">
 			<div class="overlay-title">Product</div>
-			<div class="head-title">Secure Your Brand, Build <span>Consumer Trust</span></div>
+			<h2 class="head-title">Secure Your Brand, Build <span>Consumer Trust</span></h2>
 			<div class="description">
 				Our SaaS platform empowers businesses to confidently launch products in the market, ensuring
 				authenticity and protecting consumers from fraud.
@@ -507,7 +554,7 @@
 						</div>
 						<div class="pc-media">
 							<img src="images/rebind-product-step-1-img.png" class="img-responsive"
-								alt="Receive Package">
+								alt="Receive Package" width="1024" height="887">
 							<span class="pc-badge" style="top:10px;left:10px;">Product Received</span>
 							<span class="pc-badge ghost" style="bottom:18px;right:18px;">Open your box</span>
 						</div>
@@ -519,7 +566,7 @@
 							<p>Open the packaging, find the QR code on your product, and scan it with your phone.</p>
 						</div>
 						<div class="pc-media">
-							<img src="images/rebind-product-step-2-img.png" class="img-responsive" alt="Scan QR Code">
+							<img src="images/rebind-product-step-2-img.png" class="img-responsive" alt="Scan QR Code" width="1024" height="881">
 							<span class="pc-badge" style="top:10px;left:10px;">Find the QR</span>
 							<span class="pc-badge success" style="bottom:18px;right:18px;">Scan QR code</span>
 						</div>
@@ -533,7 +580,7 @@
 						</div>
 						<div class="pc-media">
 							<img src="images/rebind-product-step-3-img.png" class="img-responsive"
-								alt="Verify Authenticity">
+								alt="Verify Authenticity" width="1024" height="888">
 							<span class="pc-badge success" style="top:10px;left:10px;">Verified</span>
 							<span class="pc-badge ghost" style="bottom:18px;right:18px;">Certificate issued</span>
 						</div>
@@ -547,7 +594,7 @@
 								real-time.</p>
 						</div>
 						<div class="pc-media">
-							<img src="images/geospacial.png" class="img-responsive" alt="Geospatial Consumption Report">
+							<img src="images/geospacial.png" class="img-responsive" alt="Geospatial Consumption Report" width="1480" height="836">
 							<span class="pc-badge" style="top:10px;left:10px;">Geospatial Data</span>
 							<span class="pc-badge ghost" style="bottom:18px;right:18px;">Scan locations</span>
 						</div>
@@ -568,7 +615,7 @@
 	<div class="use-cases-section" id="use-cases">
 		<div class="container">
 			<div class="overlay-title">Use Cases</div>
-			<div class="head-title">Industry <span>Solutions</span></div>
+			<h2 class="head-title">Industry <span>Solutions</span></h2>
 			<div class="description">
 				Rebind-Trust delivers tailored solutions for different industries, addressing specific compliance
 				requirements and business challenges.
@@ -649,12 +696,12 @@
 	<div class="industries-section" id="industries">
 		<div class="cta-section">
 			<canvas class="network-canvas" id="cta-network"></canvas>
-			<h2> Protect your brand and build consumer trust with Rebind-Trust</h1>
+			<h2>Protect your brand and build consumer trust with Rebind-Trust</h2>
 				<a href="#contactus">Contact Us Now</a>
 		</div>
 		<div class="container">
 			<div class="overlay-title">Industries</div>
-			<div class="head-title">Trust as a Service For <span>Every Industry</span></div>
+			<h2 class="head-title">Trust as a Service For <span>Every Industry</span></h2>
 			<div class="industry-list">
 				<div class="box">
 					<div class="content">
@@ -773,25 +820,25 @@
 			<div class="overlay-title">about us</div>
 			<div class="inline">
 				<div class="left-box">
-					<div class="head-title">We are technology experts company<span>in managing consumer
-							connectivity</span></div>
+					<h2 class="head-title">We are technology experts company<span>in managing consumer
+							connectivity</span></h2>
 					<div class="description">
 						<p>In the world of new commerce, products are sold via multiple channels reducing the consumer
 							connect with company, Rebind Helps you bridge the gap.</p>
 						<ul>
-							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive">Capacity to handle
+							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive" alt="">Capacity to handle
 								more than billion Unique verifications & 99.9 % availability.</li>
-							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive">Provide product
+							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive" alt="">Provide product
 								and geographical intelligence with authentic data.</li>
-							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive">Evaluate sampling
+							<li><img src="images/rebind-about-bullet-icon.png" class="img-responsive" alt="">Evaluate sampling
 								of data over the geography to understand product consumption.</li>
 						</ul>
 					</div>
 				</div>
 				<div class="right-box">
-					<img src="images/rebind-about-right-img.webp" class="img-responsive" alt="Rebind About">
+					<img src="images/rebind-about-right-img.webp" class="img-responsive" alt="Rebind About" width="1621" height="1845">
 					<div class="hl-point">
-						<img src="images/rebind-about-hl-point-icon.png" class="img-responsive">
+						<img src="images/rebind-about-hl-point-icon.png" class="img-responsive" alt="">
 						Rebind helps you bridge the gap.
 					</div>
 				</div>
@@ -803,7 +850,7 @@
 	<!-- <div class="clients-section" id="clients">
     <div class="container">
         <div class="overlay-title">clients</div>
-        <div class="head-title">Our <span>Clients</span></div>
+        <h2 class="head-title">Our <span>Clients</span></h2>
         <div class="clients-card">
             <div class="clients-logos">
                 <div class="logo-badge"><img class="client-logo" src="images/clients/vw.jpg" alt="Volkswagen logo"></div>
@@ -821,7 +868,7 @@
 	<div class="clients-section" id="clients">
 		<div class="container">
 			<div class="overlay-title">Clients</div>
-			<div class="head-title">Our <span>Esteemed Clients</span></div>
+			<h2 class="head-title">Our <span>Esteemed Clients</span></h2>
 			<div class="description">
 				We're proud to partner with leading brands across industries, helping them build trust and ensure
 				product authenticity.
@@ -880,7 +927,7 @@
 					<div class="client-logo-item">
 						<a href="https://prinkii.com/" target="_blank" rel="noopener noreferrer">
 							<div class="client-logo-wrapper">
-								<img class="client-logo" src="images/clients/prinkii.png" alt="indomax"
+								<img class="client-logo" src="images/clients/prinkii.png" alt="Prinkii"
 									onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 								<div class="client-logo-placeholder" style="display:none;">
 									<span class="client-name">Prinkii</span>
@@ -952,7 +999,7 @@
 			<div class="overlay-title">FAQ's</div>
 			<div class="inline">
 				<div class="left-box">
-					<div class="head-title">Frequently asked <span>questions</span></div>
+					<h2 class="head-title">Frequently asked <span>questions</span></h2>
 					<div class="description">
 						Explore our frequently asked questions to learn more about Rebind's features, security,
 						integration capabilities.
@@ -963,11 +1010,11 @@
 					<div class="panel-group" id="accordion">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
 										What exactly does Rebind-Trust do?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse1" class="panel-collapse collapse in">
 								<div class="panel-body">Rebind-Trust helps manufacturers create regulatory-compliant QR
@@ -977,12 +1024,12 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
 										class="collapsed">
 										Who should use Rebind-Trust?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse2" class="panel-collapse collapse">
 								<div class="panel-body">Pharmaceutical manufacturers, food & beverage companies, medical
@@ -992,12 +1039,12 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
 										class="collapsed">
 										Will Rebind-Trust work with our existing printer?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse3" class="panel-collapse collapse">
 								<div class="panel-body">Likely yes. We support Zebra, Domino, Markem-Imaj, and 20+ other
@@ -1007,12 +1054,12 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
 										class="collapsed">
 										How long does integration take?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse4" class="panel-collapse collapse">
 								<div class="panel-body">Typical integration: 1-2 days. Complex custom requirements: 1-2
@@ -1021,12 +1068,12 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse5"
 										class="collapsed">
 										Is Rebind-Trust CDSCO compliant?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse5" class="panel-collapse collapse">
 								<div class="panel-body">Yes. We're specifically designed for CDSCO batch numbering,
@@ -1036,12 +1083,12 @@
 						</div>
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse7"
 										class="collapsed">
 										What support do you provide?
 									</a>
-								</h4>
+								</h3>
 							</div>
 							<div id="collapse7" class="panel-collapse collapse">
 								<div class="panel-body">Starter: Email support (24-hour response). Professional: 24/7
@@ -1059,7 +1106,7 @@
 			<div class="overlay-title">get in touch</div>
 			<div class="inline">
 				<div class="left-box">
-					<div class="head-title">Contact <span>Us</span></div>
+					<h2 class="head-title">Contact <span>Us</span></h2>
 					<div class="description">
 						If you have any questions related to our products, services, pricing, or any other inquiries,
 						please feel free to reach out to us.
@@ -1078,7 +1125,10 @@
 		</div>
 	</div>
 
+</main>
+	<footer>
 	<div id="footer-container"></div>
+	</footer>
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>

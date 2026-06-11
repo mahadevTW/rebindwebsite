@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+img {
+    height: auto;
+}
+
 html{
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -76,10 +80,13 @@ nav.rebind-navbar .logo img{
 }
 nav.rebind-navbar ul li a{
     color: #001d5f !important;
-    padding: 8px 25px;
+    padding: 14px 25px;
     font-size: 16px;
     text-transform: capitalize;
     font-weight: 500;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
 }
 nav.rebind-navbar ul li:last-child a{
     border-radius: 5px;
