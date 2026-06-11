@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800;900&display=swap');
+/* Google Fonts loaded via <link> in HTML head for parallel loading (moved from @import) */
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -1517,8 +1517,10 @@ nav.rebind-navbar .navbar-collapse{
 }
 /*--------------------------- Footer Section ---------------------------*/
 #footer-container {
-    min-height: 220px;
-    contain: layout;
+    min-height: 240px;
+}
+.hs-form-frame {
+    min-height: 420px;
 }
 .rebind-footer{
     background: linear-gradient(180deg, #18337A 0%, #0F0C1D 100%);

@@ -26,8 +26,42 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/favicon-png.png">
 	<link rel="apple-touch-icon" href="images/favicon-png.png">
 	<link rel="manifest" href="site.webmanifest">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Google Fonts: preconnect + non-blocking link replaces @import in CSS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800;900&display=swap"></noscript>
+
+	<!-- Critical CSS: above-fold layout only — prevents CLS when async CSS loads -->
+	<style>
+		*,*::before,*::after{box-sizing:border-box}
+		img,video,iframe{max-width:100%;height:auto}
+		html{overflow-x:hidden;width:100%;max-width:100vw}
+		body{font-family:"DM Sans",sans-serif;overflow-x:hidden;width:100%;max-width:100vw;margin:0;padding:0}
+		.container{max-width:1440px;width:100%;padding:0 24px;box-sizing:border-box}
+		/* Header reserves navbar height so content doesn't shift when nav becomes fixed */
+		header{min-height:66px;position:relative}
+		.navbar{position:relative;min-height:50px;margin:0;border:0;padding:0}
+		nav.rebind-navbar{border-radius:0;margin:0;border:0;padding:8px 0;background:transparent}
+		nav.rebind-navbar .logo{height:50px;width:140px;display:block}
+		nav.rebind-navbar .logo img{max-height:100%;max-width:100%;display:block}
+		nav.rebind-navbar .navbar-collapse{padding:0;height:50px;display:flex;align-items:center}
+		/* Hero section background + layout prevents white flash and reflow */
+		.hero-section{background:linear-gradient(225.17deg,#1A85F8 0.3%,#1A85F8 39.59%,#3636B2 100%);position:relative;z-index:1;padding:60px 0 20px 0}
+		.hero-section .head-title-wrap{display:flex;justify-content:space-between}
+		.hero-section .head-title-wrap .content{width:50%;margin-top:80px}
+		.hero-section .head-title-wrap .content h1{margin:0;color:#fff;font-size:60px;font-weight:700;line-height:1.2}
+		#typewriter-title{display:inline-block;min-height:180px;vertical-align:top;position:relative}
+		.hero-section .head-title-wrap .img{position:relative}
+		.hero-section .head-title-wrap .img img{height:600px;object-fit:contain}
+	</style>
+
+	<!-- Non-critical CSS loaded async; noscript fallback ensures styles for no-JS browsers -->
+	<link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
+	<link rel="preload" href="css/style.css" as="style" onload="this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="css/style.css"></noscript>
 
 	<!-- Google Analytics Centralized -->
 	<script src="js/analytics.js" defer></script>
@@ -1137,13 +1171,16 @@
 	<script type="text/javascript" src="js/footer-loader.js"></script>
 
 	<script>
+		var navbarHeight = 66;
 		$(window).scroll(function () {
-			var scroll = $(window).scrollTop()
-
+			var scroll = $(window).scrollTop();
 			if (scroll >= 500) {
 				$('.rebind-navbar').addClass('topfixed');
+				/* Compensate the height lost from flow when nav becomes fixed — same frame, zero net CLS */
+				$('header').css('padding-bottom', navbarHeight + 'px');
 			} else {
 				$('.rebind-navbar').removeClass('topfixed');
+				$('header').css('padding-bottom', '');
 			}
 		});
 
