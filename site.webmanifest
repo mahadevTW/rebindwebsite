@@ -1,0 +1,16 @@
+{
+  "name": "Rebind Trust",
+  "short_name": "Rebind",
+  "description": "Product Authentication & Anti-Counterfeiting Platform",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#1a85f8",
+  "icons": [
+    {
+      "src": "/images/favicon-png.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
