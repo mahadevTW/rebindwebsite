@@ -1516,6 +1516,10 @@ nav.rebind-navbar .navbar-collapse{
     width: 45%;
 }
 /*--------------------------- Footer Section ---------------------------*/
+#footer-container {
+    min-height: 220px;
+    contain: layout;
+}
 .rebind-footer{
     background: linear-gradient(180deg, #18337A 0%, #0F0C1D 100%);
     padding: 10px 0 10px 0;
