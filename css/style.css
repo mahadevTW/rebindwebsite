@@ -4423,6 +4423,48 @@ nav.rebind-navbar .navbar-collapse{
     box-shadow: 0 4px 12px rgba(26, 133, 248, 0.3);
 }
 
+/* Closed Positions */
+.career-badge.closed {
+    background: #EDEFF5;
+    color: #606A95;
+}
+.career-card.closed {
+    opacity: 0.75;
+}
+.career-card.closed:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.job-badge.closed {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+.job-closed-notice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFF4F1;
+    border: 1px solid #FFD9CC;
+    color: #B3401E;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.job-closed-notice svg {
+    flex-shrink: 0;
+}
+.btn-apply.disabled {
+    background: #ECEEF4;
+    border-color: #ECEEF4;
+    color: #8A93B2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Responsive Styles for Careers */
 @media (max-width: 991px) {
     .careers-grid {
@@ -4510,5 +4552,249 @@ nav.rebind-navbar .navbar-collapse{
     .blog-cta-buttons .cta-secondary {
         width: 100%;
         text-align: center;
+    }
+}
+
+/*--------------------------- Legal Pages ---------------------------*/
+.legal-hero {
+    position: relative;
+    padding: 80px 0 50px 0;
+    background: #FBFDFF;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+}
+.legal-hero .overlay-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 140px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #f6fbff;
+    z-index: -1;
+    line-height: 1;
+}
+.legal-hero .legal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #EBF7FF;
+    color: #1a85f8;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+.legal-hero h1 {
+    color: #161C2D;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin: 0 0 14px 0;
+}
+.legal-hero .legal-updated {
+    color: #606A95;
+    font-size: 15px;
+    margin: 0;
+}
+
+.legal-body-section {
+    padding: 60px 0 120px 0;
+    background: #fff;
+}
+.legal-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+.legal-toc {
+    width: 270px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 110px;
+    background: #F6FBFF;
+    border-radius: 16px;
+    padding: 24px;
+}
+.legal-toc h4 {
+    color: #161C2D;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin: 0 0 14px 0;
+}
+.legal-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.legal-toc li {
+    margin-bottom: 2px;
+}
+.legal-toc a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #606A95;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+.legal-toc a:hover,
+.legal-toc a.active {
+    background: #EBF7FF;
+    color: #1a85f8;
+}
+.legal-content {
+    flex: 1;
+    min-width: 0;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.06);
+    padding: 50px;
+}
+.legal-content section {
+    margin-bottom: 38px;
+    scroll-margin-top: 110px;
+}
+.legal-content section:last-child {
+    margin-bottom: 0;
+}
+.legal-content h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #161C2D;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -.3px;
+    margin: 0 0 18px 0;
+}
+.legal-content h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #EBF7FF;
+    color: #1a85f8;
+    font-size: 15px;
+    font-weight: 800;
+}
+.legal-content h3 {
+    color: #25274C;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 22px 0 12px 0;
+}
+.legal-content p {
+    color: #606A95;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 16px 0;
+}
+.legal-content ul,
+.legal-content ol {
+    margin: 0 0 16px 0;
+    padding-left: 0;
+    list-style: none;
+}
+.legal-content ol {
+    counter-reset: legal-ol;
+}
+.legal-content ul li,
+.legal-content ol li {
+    position: relative;
+    padding-left: 26px;
+    color: #606A95;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+.legal-content ul li:before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #1a85f8;
+}
+.legal-content ol li {
+    counter-increment: legal-ol;
+}
+.legal-content ol li:before {
+    content: counter(legal-ol);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    background: #EBF7FF;
+    color: #1a85f8;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.legal-content strong {
+    color: #161C2D;
+}
+.legal-content a {
+    color: #1a85f8;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.legal-content .legal-contact-card {
+    background: #F6FBFF;
+    border-radius: 16px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.legal-content .legal-contact-card div strong {
+    display: block;
+    color: #161C2D;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin-bottom: 6px;
+}
+.legal-content .legal-contact-card div span,
+.legal-content .legal-contact-card div a {
+    color: #606A95;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+@media (max-width: 991px) {
+    .legal-toc {
+        display: none;
+    }
+    .legal-content {
+        padding: 32px 24px;
+    }
+    .legal-hero {
+        padding: 60px 0 40px 0;
+    }
+    .legal-hero h1 {
+        font-size: 32px;
+    }
+    .legal-hero .overlay-title {
+        font-size: 64px;
     }
 }
